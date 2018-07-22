@@ -1,8 +1,13 @@
 #include <ncurses.h>
 #include "cScreenManager.hpp"
+#include "cScreen.hpp"
 #include <string>
 
-cScreenManager::cScreenManager() {
+cScreenManager::cScreenManager(cScreen *FolderScreen, cScreen *FilesScreen, cScreen *DocumentScreen) {
+  this->FolderScreen = FolderScreen;
+  this->FilesScreen = FilesScreen;
+  this->DocumentScreen = DocumentScreen;
+
   int l, c;
   getmaxyx(stdscr, l, c);
   this->maxC = c;
@@ -10,6 +15,13 @@ cScreenManager::cScreenManager() {
 }
 
 bool cScreenManager::sizeChanged() {
+  int l, c;
+  getmaxyx(stdscr, l, c);
+  if ((this->maxC != c) || (this->maxL != l)) {
+    this->maxC = c;
+    this->maxL = l;
+    return true;
+  }
   return false;
 }
 
