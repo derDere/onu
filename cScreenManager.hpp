@@ -10,10 +10,12 @@ public:
   void updateScreens();
   void draw();
   void focus(cScreen *NewFocus);
+  cScreen *focus();
 private:
   int maxL;
   int maxC;
   cScreen *FolderScreen, *FilesScreen, *DocumentScreen;
+  cScreen *CurrentFocus;
 };
 
 #endif

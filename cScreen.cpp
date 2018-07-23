@@ -10,8 +10,13 @@ cScreen::cScreen(int x, int y, int w, int h, int focused_color, int normal_color
   this->focused_color = focused_color;
   this->normal_color = normal_color;
   this->win = newwin(y,x,h,w);
+  keypad(this->win,true);
   this->Title = "";
   this->needs_update = true;
+}
+
+cScreen::~cScreen() {
+  delwin(this->win);
 }
 
 cScreen *cScreen::title(std::string new_value) {
@@ -31,6 +36,10 @@ cScreen *cScreen::focus(bool val) {
 
 bool cScreen::focus() {
 	return this->focused;
+}
+
+WINDOW *cScreen::window() {
+  return this->win;
 }
 
 cScreen *cScreen::draw(bool force) {

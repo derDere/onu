@@ -18,10 +18,15 @@ void cScreenManager::draw() {
   this->DocumentScreen->draw();
 }
 
+cScreen *cScreenManager::focus() {
+  return this->CurrentFocus;
+}
+
 void cScreenManager::focus(cScreen *NewFocus) {
   this->FolderScreen->focus(this->FolderScreen==NewFocus);
   this->FilesScreen->focus(this->FilesScreen==NewFocus);
   this->DocumentScreen->focus(this->DocumentScreen==NewFocus);
+  CurrentFocus = NewFocus;
 }
 
 bool cScreenManager::sizeChanged() {
