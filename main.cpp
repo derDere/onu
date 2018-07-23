@@ -1,7 +1,9 @@
 #include <ncurses.h>
 #include <stdlib.h>
-#include "cScreenManager.hpp"
 #include <string>
+#include "cScreenManager.hpp"
+#include "cScreen.hpp"
+#include "cFolderScreen.hpp"
 
 const int FOCUSED_CP = 1;
 const int NORMAL_CP = 2;
@@ -24,7 +26,7 @@ int main(int argc, char** argv) {
   init_pair(NORMAL_CP, COLOR_WHITE, COLOR_BLACK);
 
   //Init Screens
-  cScreen* s1 = new cScreen(1,1,0,0,FOCUSED_CP,NORMAL_CP);
+  cFolderScreen* s1 = new cFolderScreen(FOCUSED_CP,NORMAL_CP);
   s1->title("S1");
   cScreen* s2 = new cScreen(1,1,0,0,FOCUSED_CP,NORMAL_CP);
   s2->title("S2");

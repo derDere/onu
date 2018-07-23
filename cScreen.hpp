@@ -15,13 +15,14 @@ public:
   std::string title();
   WINDOW *window();
 private:
-  std::string Title;
 	bool focused;
   bool needs_update;
   int x,y,w,h;
   int focused_color;
   int normal_color;
-  WINDOW *win;
+protected:
+  virtual std::string Title;
+  virtual WINDOW *win;
 };
 
 #endif
