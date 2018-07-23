@@ -26,24 +26,36 @@ int main(int argc, char** argv) {
   //mvaddstr(0,0,"Hallo Welt!\n\n");
 
   cScreen* s1 = new cScreen(1,1,0,0,FOCUSED_CP,NORMAL_CP);
-  s1->name = "S1";
-  s1->focus(true);
+  s1->title("S1")->focus(true);
   cScreen* s2 = new cScreen(1,1,0,0,FOCUSED_CP,NORMAL_CP);
-  s2->name = "S2";
+  s2->title("S2");
   cScreen* s3 = new cScreen(1,1,0,0,FOCUSED_CP,NORMAL_CP);
-  s3->name = "S3";
+  s3->title("S3");
 
   cScreenManager* sm = new cScreenManager(s1, s2, s3);
-  sm->updateScreens();
-
-  refresh();
-  s1->draw();
-  s2->draw();
-  s3->draw();
 
   //addch(ACS_ULCORNER);
 
-  getch();
+  char input;
+  do {
+    if(sm->sizeChanged())
+      sm->updateScreens();
+    sm->draw();
+
+    input = getch();
+
+    switch (input) {
+      case 'a':
+        sm->focus(s1);
+        break;
+      case 's':
+        sm->focus(s2);
+        break;
+      case 'd':
+        sm->focus(s3);
+        break;
+    }
+  } while(input != 'q');
 
   return 0;//*/
 }

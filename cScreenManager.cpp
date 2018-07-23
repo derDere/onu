@@ -7,11 +7,21 @@ cScreenManager::cScreenManager(cScreen *FolderScreen, cScreen *FilesScreen, cScr
   this->FolderScreen = FolderScreen;
   this->FilesScreen = FilesScreen;
   this->DocumentScreen = DocumentScreen;
+  this->maxC = -1;
+  this->maxL = -1;
+}
 
-  int l, c;
-  getmaxyx(stdscr, l, c);
-  this->maxC = c;
-  this->maxL = l;
+void cScreenManager::draw() {
+  refresh();
+  this->FolderScreen->draw();
+  this->FilesScreen->draw();
+  this->DocumentScreen->draw();
+}
+
+void cScreenManager::focus(cScreen *NewFocus) {
+  this->FolderScreen->focus(this->FolderScreen==NewFocus);
+  this->FilesScreen->focus(this->FilesScreen==NewFocus);
+  this->DocumentScreen->focus(this->DocumentScreen==NewFocus);
 }
 
 bool cScreenManager::sizeChanged() {

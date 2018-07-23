@@ -6,13 +6,16 @@
 class cScreen {
 public:
   cScreen(int x, int y, int w, int h, int focused_color, int normal_color);
-  void draw();
-  void update(int x, int y, int w, int h);
+  cScreen *draw(bool force = false);
+  cScreen *update(int x, int y, int w, int h);
   bool focus();
-  void focus(bool val);
-  std::string name;
+  cScreen *focus(bool val);
+  cScreen *title(std::string new_value);
+  std::string title();
 private:
+  std::string Title;
 	bool focused;
+  bool needs_update;
   int x,y,w,h;
   int focused_color;
   int normal_color;
