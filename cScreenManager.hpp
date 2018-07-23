@@ -8,8 +8,6 @@ public:
   cScreenManager(cScreen *FolderScreen, cScreen *FilesScreen, cScreen *DocumentScreen);
   bool sizeChanged();
   void updateScreens();
-  void print();
-  void hr();
 private:
   int maxL;
   int maxC;

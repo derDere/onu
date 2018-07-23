@@ -26,18 +26,9 @@ bool cScreenManager::sizeChanged() {
 }
 
 void cScreenManager::updateScreens() {
-
-}
-
-void cScreenManager::print() {
-  addstr(std::to_string(this->maxC).c_str());
-  addstr(", ");
-  addstr(std::to_string(this->maxL).c_str());
-}
-
-void cScreenManager::hr() {
-  addch('\n');
-  for (int i = 0; i < this->maxC; i++) {
-    addch('-');
-  }
+  int w3 = (int)(this->maxC*0.3);
+  int w4 = (int)(this->maxC*0.4);
+  this->FolderScreen->update(0,0,w3,this->maxL);
+  this->FilesScreen->update(w3,0,w3,this->maxL);
+  this->DocumentScreen->update(w3+w3,0,w4,this->maxL);
 }
