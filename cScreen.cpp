@@ -19,19 +19,17 @@ cScreen::~cScreen() {
   delwin(this->win);
 }
 
-cScreen *cScreen::title(std::string new_value) {
+void cScreen::title(std::string new_value) {
   if (new_value != this->Title) this->needs_update = true;
   this->Title = new_value;
-  return this;
 }
 
 std::string cScreen::title() {
   return this->Title;
 }
 
-cScreen *cScreen::focus(bool val) {
+void cScreen::focus(bool val) {
 	this->focused = val;
-  return this;
 }
 
 bool cScreen::focus() {
@@ -42,7 +40,7 @@ WINDOW *cScreen::window() {
   return this->win;
 }
 
-cScreen *cScreen::draw(bool force) {
+void cScreen::draw(bool force) {
   if (this->needs_update || force) {
   	box(this->win,0,0);
   	if(this->focused) {
@@ -60,10 +58,9 @@ cScreen *cScreen::draw(bool force) {
   	}
     wrefresh(this->win);
   }
-  return this;
 }
 
-cScreen *cScreen::update(int x, int y, int w, int h) {
+void cScreen::update(int x, int y, int w, int h) {
   if ((this->x!=x)||(this->y!=y)||(this->w!=w)||(this->h!=h)) {
     this->x = x;
     this->y = y;
@@ -73,5 +70,4 @@ cScreen *cScreen::update(int x, int y, int w, int h) {
     wresize(this->win,h,w);
     this->needs_update = true;
   }
-  return this;
 }

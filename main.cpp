@@ -27,7 +27,6 @@ int main(int argc, char** argv) {
 
   //Init Screens
   cFolderScreen* s1 = new cFolderScreen(FOCUSED_CP,NORMAL_CP);
-  s1->title("S1");
   cScreen* s2 = new cScreen(1,1,0,0,FOCUSED_CP,NORMAL_CP);
   s2->title("S2");
   cScreen* s3 = new cScreen(1,1,0,0,FOCUSED_CP,NORMAL_CP);

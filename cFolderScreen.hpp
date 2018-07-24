@@ -8,6 +8,7 @@ class cFolderScreen: public cScreen {
 public:
   cFolderScreen(int focused_color, int normal_color);
   ~cFolderScreen();
+  void draw(bool force = false);
 private:
   int Folders;
 };
